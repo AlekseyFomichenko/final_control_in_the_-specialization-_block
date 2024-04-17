@@ -1,0 +1,86 @@
+   45  sudo dpkg mysql-workbench-community-dbgsym_8.0.36-1ubuntu22.04_amd64.deb
+   46  dpkg --help
+   47  sudo dpkg -i mysql-workbench-community-dbgsym_8.0.36-1ubuntu22.04_amd64.deb 
+   48  rm rf /var/cache/debconf/* dpkg-reconfigure debconf apt-get update && apt-get upgrade
+   49  rm -rf /var/cache/debconf/* dpkg-reconfigure debconf apt-get update && apt-get upgrade
+   50  sudo su
+   51  sudo apt search mysql
+   52  sudo apt update
+   53  sudo apt upgrade
+   54  cd Загрузки/
+   55  ll
+   56  sudo dpkg -i mysql-workbench-community-dbgsym_8.0.36-1ubuntu22.04_amd64.deb 
+   57  sudo apt install mysql-client
+   58  apt --fix-broken install
+   59  sudo apt --fix-broken install
+   60  sudo apt install mysql-client
+   61  sudo dpkg -i mysql-workbench-community-dbgsym_8.0.36-1ubuntu22.04_amd64.deb 
+   62  sudo apt --fix-broken install
+   63  mysql --version
+   64  ll
+   65  sudo dpkg -i mysql-workbench-community_8.0.34-1ubuntu22.04_amd64.deb
+   66  ll
+   67  sudo dpkg -i mysql-workbench-community_8.0.36-1ubuntu22.04_amd64.deb.asc
+   68  sudo apt --fix-broken install
+   69  ip a
+   70  ss -ntlp
+   71  sudo docker ps -a
+   72  sudo docker stop 70a218235264 d83bc53d68af
+   73  sudo docker ps -a
+   74  sudo docker rm 70a218235264 d83bc53d68af
+   75  sudo docker images
+   76  sudo docker swarm ls
+   77  sudo docker compose ps -a
+   78  sudo docker compose ls
+   79  history
+   80  sudo su
+   81  history
+   82  mysql --v
+   83  mysql -version
+   84  mysql --version
+   85  sudo apt search mysql
+   86  ll
+   87  cd Рабочий\ стол/
+   88  cat Pets.txt Pack_Animals.txt
+   89  cat >> Pets.txt
+   90  cat >> Pack_Animals.txt
+   91  cat Pets.txt 
+   92  cat Pets.txt Pack_Animals.txt > Human_Friends.txt
+   93  mkdir newFolder && mv Human_Friends.txt newFolder
+   94  history
+   95  sudo apt update
+   96  apt --help
+   97  sudo apt remove mysql
+   98  sudo apt install mysql
+   99  sudo apt install mysql-community-server
+  100  mysql --version
+  101  systemctl status mysql
+  102  dpkg -L
+  103  dpkg --list
+  104  sudo apt purge mysql-community-server
+  105  sudo apt purge mysql
+  106  dpkg --list
+  107  cd /home/alekseytest/Загрузки/
+  108  ll
+  109  sudo dpkg -p mysql-community-server-core-dbgsym_8.3.0-1ubuntu22.04_amd64.deb
+  110  dpkg-query -l
+  111  nano file.txt
+  112  sudo dpkg -p file.txt
+  113  nano file.txt
+  114  sudo dpkg -p mysql-apt-config
+  115  mysql-client
+  116  mysql-common
+  117  mysql-community-client
+  118  mysql-community-client-core
+  119  mysql-community-client-plugins
+  120  mysql-community-server-core
+  121  mysql-workbench-community
+  122  mysql-workbench-community-dbgsym
+  123  sudo su
+  124  history
+  125  sudo apt install -f
+  126  sudo apt autoremove
+  127  dpkg --list
+  128  sudo dpkg --purge mysql-common 
+  129  dpkg --list
+  130  history
