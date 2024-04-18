@@ -107,11 +107,98 @@ Desktop Documents Downloads  HumanFriends.txt  Music  PackAnimals.txt  Pets.txt 
 7.1. После создания диаграммы классов в 6 пункте, в 7 пункте база данных "Human Friends" должна быть структурирована в соответствии с этой диаграммой. Например, можно создать таблицы, которые будут соответствовать классам "Pets" и "Pack animals", и в этих таблицах будут поля, которые характеризуют каждый тип животных (например, имена, даты рождения, выполняемые команды и т.д.). 
 7.2   - В ранее подключенном MySQL создать базу данных с названием "Human Friends".
    - Создать таблицы, соответствующие иерархии из вашей диаграммы классов.
-   - Заполнить таблицы данными о животных, их командах и датами рождения.
-   - Удалить записи о верблюдах и объединить таблицы лошадей и ослов.
-   - Создать новую таблицу для животных в возрасте от 1 до 3 лет и вычислить их возраст с точностью до месяца.
-   - Объединить все созданные таблицы в одну, сохраняя информацию о принадлежности к исходным таблицам.
+   ```
+CREATE DATABASE human_friends;
+USE human_friends;
 
+CREATE TABLE pets (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nickname VARCHAR(30) NOT NULL,
+    kind VARCHAR(45) NOT NULL,
+    birthday DATE,
+    commands VARCHAR(45)
+);
+
+CREATE TABLE pack_animals (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nickname VARCHAR(30) NOT NULL,
+    kind VARCHAR(45) NOT NULL,
+    birthday DATE,
+    commands VARCHAR(255)
+);
+```
+   - Заполнить таблицы данными о животных, их командах и датами рождения.
+```
+INSERT INTO pets(nickname, kind, birthday, commands)
+VALUES
+("Fido", "Dog", STR_TO_DATE('2020.01.01', '%Y.%m.%d'), "Sit, Stay, Fetch"),
+
+("Whiskers", "Cat", STR_TO_DATE('2019.05.15', '%Y.%m.%d'), "Sit, Pounce"),
+
+("Hammy", "Hamster", STR_TO_DATE('2021.03.10', '%Y.%m.%d'), "Roll, Hide"),
+
+("Buddy", "Dog",STR_TO_DATE('2018.12.10', '%Y.%m.%d') , "Sit, Paw, Bark"),
+
+("Smudge", "Cat", STR_TO_DATE('2020.02.20', '%Y.%m.%d'), "Sit, Pounce, Scratch"),
+
+("Peanut", "Hamster",STR_TO_DATE('2021.08.01', '%Y.%m.%d') , "Roll, Spin"),
+
+("Bella", "Dog", STR_TO_DATE('2019.11.11', '%Y.%m.%d'), "Sit, Stay, Roll"),
+
+("Oliver", "Cat", STR_TO_DATE('2020.06.30', '%Y.%m.%d'), "Meow, Scratch, Jump");
+
+INSERT INTO pack_animals(nickname, kind, birthday, commands)
+VALUES
+("Thunder", "Horse", STR_TO_DATE('2015.07.21', '%Y.%m.%d'), "Trot, Canter, Gallop"),
+
+("Sandy", "Camel", STR_TO_DATE('2016.11.03', '%Y.%m.%d'), "Walk, Carry Load"),
+
+("Eeyore", "Donkey", STR_TO_DATE('2017.09.18', '%Y.%m.%d'), "Walk, Carry Load, Bray"),
+
+("Storm", "Horse", STR_TO_DATE('2014.05.05', '%Y.%m.%d'), "Trot, Canter"),
+
+("Dune", "Camel", STR_TO_DATE('2018.12.12', '%Y.%m.%d'), "Walk, Sit"),
+
+("Burro", "Donkey", STR_TO_DATE('2019.01.23', '%Y.%m.%d'), "Walk, Bray, Kick"),
+
+("Blaze", "Horse", STR_TO_DATE('2016.02.29', '%Y.%m.%d'), "Trot, Jump, Gallop"),
+
+("Sahara", "Camel", STR_TO_DATE('2015.08.14', '%Y.%m.%d'), "Walk, Run");
+```
+   - Удалить записи о верблюдах и объединить таблицы лошадей и ослов.
+```
+DELETE FROM pack_animals WHERE kind = 'Camel' AND id > 0;
+
+CREATE TABLE all_animals AS
+SELECT * FROM pets;
+
+INSERT INTO all_animals
+SELECT * FROM pack_animals;
+```
+   - Создать новую таблицу для животных в возрасте от 1 до 3 лет и вычислить их возраст с точностью до месяца.
+```
+DELETE FROM all_animals 
+WHERE TIMESTAMPDIFF(YEAR, birthday, CURDATE()) > 3;
+
+SELECT *,
+TIMESTAMPDIFF(MONTH,birthday,CURDATE()) AS age_in_months
+FROM all_animals;
+```
+   - Объединить все созданные таблицы в одну, сохраняя информацию о принадлежности к исходным таблицам.
+```
+SELECT 
+    *
+FROM
+    pets 
+UNION ALL SELECT 
+    *
+FROM
+    pack_animals 
+UNION ALL SELECT 
+    *
+FROM
+    all_animals;
+```
 Пример заполненной таблицы для теста:
 Лист "Pets"
 ID
