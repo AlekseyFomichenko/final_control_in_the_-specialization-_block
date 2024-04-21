@@ -186,16 +186,17 @@ FROM all_animals;
 ```
    - Объединить все созданные таблицы в одну, сохраняя информацию о принадлежности к исходным таблицам.
 ```
+CREATE TABLE final_table AS
 SELECT 
-    *
+    *, 'pets' AS table_name
 FROM
     pets 
 UNION ALL SELECT 
-    *
+    *, 'pack_animals' AS table_name
 FROM
     pack_animals 
 UNION ALL SELECT 
-    *
+    *, 'all_animals' AS table_name
 FROM
     all_animals;
 ```
