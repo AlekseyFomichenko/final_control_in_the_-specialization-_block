@@ -69,8 +69,16 @@ select *,
 timestampdiff(month, birthday, curdate()) as age_in_months
 from all_animals;
 
-select * from pets
-union all
-select * from pack_animals
-union all
-select * from all_animals;
+CREATE TABLE final_table AS
+SELECT 
+    *, 'pets' AS table_name
+FROM
+    pets 
+UNION ALL SELECT 
+    *, 'pack_animals' AS table_name
+FROM
+    pack_animals 
+UNION ALL SELECT 
+    *, 'all_animals' AS table_name
+FROM
+    all_animals;
