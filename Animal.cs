@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
 namespace PetRegistry
 {
@@ -47,24 +41,20 @@ namespace PetRegistry
 
         public Animal(string name, string kind, DateTime birthday, List<string> commands)
         {
-            id = new Random().Next(100000);
+            Id = new Random().Next(100000);
             Name = name;
             Kind = kind;
             Birthday = birthday;
             Commands = commands;
         }
 
-        public void ShowCommands()
-        {
-            foreach (var command in commands)
-            {
-                Console.WriteLine(command);
-            }
-        }
+        public void ShowCommands() => Commands.ForEach(Console.WriteLine);
 
-        public void AddCommand(string command)
+        public void AddCommand(string command) => Commands.Add(command);
+
+        public override string ToString()
         {
-            Commands.Add(command);
+            return $"Тип - {Kind}, Имя - {Name}, Дата рождения - {Birthday}\nКоманды: {string.Join(", ", Commands)}\n\n";
         }
     }
 }
