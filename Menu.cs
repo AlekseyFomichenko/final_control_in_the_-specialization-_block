@@ -1,4 +1,4 @@
-﻿using PetRegistry.models;
+using PetRegistry.models;
 using System;
 
 namespace PetRegistry
@@ -40,12 +40,10 @@ namespace PetRegistry
                         break;
                     case 4:
                         for (int i = 0; i < AnimalStorage.AnimalList().Count; i++)
-                        {
-                            Console.WriteLine(AnimalStorage.AnimalList()[i]);
-                        }
+                            Console.WriteLine(AnimalStorage.AnimalList()[i].ToString());
                         break;
                     case 5:
-                        Console.WriteLine(AnimalStorage.AnimalList().Count);
+                        Console.WriteLine($"\nВсего - {AnimalStorage.AnimalList().Count}\n");
                         break;
                     case 6:
                         Console.WriteLine("Выход из программы...");
@@ -77,11 +75,7 @@ namespace PetRegistry
 
             Console.WriteLine("Знает ли какие-нибудь команды(если да: через запятую перечислите их, если нет: нажмите Enter)");
             string temp = Console.ReadLine();
-            List<string> commandsInput = (temp.Split(',')).ToList();
-            for (int i = 0; i < commandsInput.Count; i++)
-            {
-                _ = commandsInput[i].Trim();
-            }
+            List<string> commandsInput = (temp.Split(',', StringSplitOptions.TrimEntries).ToList());
 
             switch (kindInput)
             {
@@ -106,33 +100,20 @@ namespace PetRegistry
                 default:
                     break;
             }
-
-            //foreach (var item in Enum.GetNames<Animals>())
-            //{
-            //    Console.WriteLine($"{0} - {item}", Enum.GetValues(typeof(Animals)),item);
-            //}
         }
 
         private void CommandList(string nameInput)
         {
             for (int i = 0; i < AnimalStorage.AnimalList().Count; i++)
-            {
                 if (AnimalStorage.AnimalList()[i].Name == nameInput)
-                {
                     AnimalStorage.AnimalList()[i].Commands.ForEach(Console.WriteLine);
-                }
-            }
         }
 
         private void AddCommand(string name, string command)
         {
             foreach (var animal in AnimalStorage.AnimalList())
-            {
                 if (animal.Name == name)
-                {
                     animal.AddCommand(command);
-                }
-            }
         }
     }
 }
