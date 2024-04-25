@@ -106,7 +106,7 @@ namespace PetRegistry
         {
             for (int i = 0; i < AnimalStorage.AnimalList().Count; i++)
                 if (AnimalStorage.AnimalList()[i].Name == nameInput)
-                    AnimalStorage.AnimalList()[i].Commands.ForEach(Console.WriteLine);
+                    AnimalStorage.AnimalList()[i].ShowCommands();
         }
 
         private void AddCommand(string name, string command)
